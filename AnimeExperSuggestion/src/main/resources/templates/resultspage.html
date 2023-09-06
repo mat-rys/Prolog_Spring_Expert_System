@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyszukiwarka Anime</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/pagestyle.css}">
+    <script type="text/javascript">
+       function sortTable(n) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = document.getElementById("animeTable");
+    switching = true;
+    dir = "asc";
+    while (switching) {
+        switching = false;
+        rows = table.getElementsByTagName("tr");
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[n];
+            y = rows[i + 1].getElementsByTagName("td")[n];
+            if (n === 5) {
+                // Sortowanie dla kolumny "Obejrzenia"
+                var xVal = parseInt(x.innerHTML.replace(/,/g, ""));
+                var yVal = parseInt(y.innerHTML.replace(/,/g, ""));
+                if (dir == "asc") {
+                    if (xVal > yVal) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (xVal < yVal) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            } else {
+                // Sortowanie dla pozostałych kolumn
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    }
+}
+
+    </script>
+</head>
+<body>
+<h1>Wyniki wyszukiwania</h1>
+<h1 style="font-size: 18px;">Po kliknięciu na kategorie dokonujesz sortowania według niej</h1>
+
+
+
+<div id="resultContainer" th:if="${not #lists.isEmpty(results)}">
+    <div class="button-container">
+        <button onclick="window.location.href='start-page'">Strona startowa</button>
+    </div>
+    <table id="animeTable">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Tytuł</th>
+            <th onclick="sortTable(1)">Gatunek</th>
+            <th onclick="sortTable(2)">Format</th>
+            <th onclick="sortTable(3)">Odcinki</th>
+            <th onclick="sortTable(4)">Ocena</th>
+            <th onclick="sortTable(5)">Obejrzenia</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="result : ${results}">
+            <td th:text="${result['Tytuł']}"></td>
+            <td th:text="${result['Gatunki']}"></td>
+            <td th:text="${result['Format']}"></td>
+            <td th:text="${result['Odcinki']}"></td>
+            <td th:text="${result['Ocena']}"></td>
+            <td th:text="${result['Obejrzenia']}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="noResultsMessage" th:if="${#lists.isEmpty(results)}">
+    <p>Brak wyników dla podanych kategorii.</p>
+</div>
+</body>
+</html>

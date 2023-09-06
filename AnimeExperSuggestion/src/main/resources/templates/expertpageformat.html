@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Anime expert</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/expertstyle.css}">
+</head>
+<body>
+<h1>Anime Expert</h1>
+<h1>Jakie format cię interesuje?</h1>
+<div class="button-container">
+  <button onclick="window.location.href='start-page'">Strona startowa</button>
+</div>
+<div class="expert-container">
+  <div class="text-container">
+    <form action="/api/format" method="POST">
+      <textarea id="message" name="answer" rows="10"></textarea>
+      <p>Przykładowe odpowiedzi to 'TV' , 'Movie , 'OVA' lub 'Special'</p>
+      <button class="send-button" type="submit">Przejdź dalej</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

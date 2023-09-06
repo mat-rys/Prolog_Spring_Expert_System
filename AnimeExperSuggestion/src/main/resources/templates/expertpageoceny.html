@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Anime Expert</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/expertstyle.css}">
+</head>
+<body>
+<h1>Anime Expert</h1>
+<h1>Jakie średnie oceny na popularnych stronach oczekujesz?</h1>
+<div class="button-container">
+  <button onclick="window.location.href='start-page'">Strona startowa</button>
+</div>
+<div class="expert-container">
+  <div class="text-container">
+    <form action="/api/oceny" method="POST" onsubmit="return validateForm()">
+      <textarea id="message" name="answer" rows="10"></textarea>
+      <div id="error-message" class="error-message"></div>
+      <button class="send-button" type="submit">Przejdź dalej</button>
+    </form>
+  </div>
+</div>
+
+<script>
+    function validateForm() {
+      var answerInput = document.getElementById("message");
+      var answer = answerInput.value;
+
+      if (answer.trim() === "") {
+        return true; // Przejdź dalej, jeśli nie wprowadzono danych
+      }
+
+      var pattern = /^[><=]\s*\d+$/;
+      if (!pattern.test(answer)) {
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.textContent = "Wprowadź poprawny format oceny: >, < lub =, a następnie liczbę od 1 do 10.";
+        return false;
+      }
+
+      return true;
+    }
+</script>
+</body>
+</html>

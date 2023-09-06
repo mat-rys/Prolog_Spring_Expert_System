@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: #333333;
+    animation: fade-in 1s ease-in-out;
+}
+
+.button-container {
+    text-align: right;
+    margin-bottom: 10px;
+    animation: fade-in 1s ease-in-out;
+}
+
+.button-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button-container button:hover {
+    background-color: #45a049;
+}
+
+.expert-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    animation: fade-in 1s ease-in-out;
+}
+
+.text-container {
+    width: 30%;
+}
+
+textarea#message {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+.send-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.send-button:hover {
+    background-color: #45a049;
+}
+
+/* Animacja przejścia slajdu w dół */
+@keyframes slide-in {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+ .genre-list {
+      float: right;
+      margin-left: 20px;
+    }
+
+    .genre-list ol {
+      list-style-type: decimal;
+      padding-left: 15px;
+    }
