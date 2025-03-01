@@ -1,4 +1,4 @@
-# Prolog_Spring_Expert_System
+# prolog-pring-expert-system
 ## **🚀 Project short description:**
 The project is an expert system that uses the logical programming language Prolog to define advisory conditions in the field of Japanese animations. Integrated with Java and Spring, the project provides a user interface that allows users to ask questions about anime. Using the knowledge base in Prolog, the system provides personalized answers and recommendations. Integration with Spring allows for dependency management, handling HTTP requests, and testing, ensuring reliable and personalized advice on anime based on logical rules.
 
